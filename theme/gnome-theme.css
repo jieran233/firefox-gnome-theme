@@ -19,6 +19,9 @@
 
 @import "parts/remove-white-flash.css";
 
+/* Center */
+@import "parts/center.css";
+
 /* Extensions support */
 @import "extensions/tab-center-reborn.css";
 
