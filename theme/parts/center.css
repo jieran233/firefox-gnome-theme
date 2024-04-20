@@ -10,3 +10,9 @@
 	text-align: center !important;
 	margin-left: 100px !important;
 }
+
+/* Center items in the bookmark toolbar */
+#PlacesToolbarItems {
+    align-items: center !important;
+    justify-content: center !important;
+}
