@@ -242,7 +242,8 @@ def main():
                                                                     "https://raw.githubusercontent.com/yokoffing/Betterfox/refs/heads/main/user.js",
                                                                     "configuration.patches/user.js.betterfox.override.js",
                                                                     "configuration.patches/user.js.fast-firefox.js",
-                                                                    "configuration.patches/user.js.fast-firefox.override.js"]),
+                                                                    "configuration.patches/user.js.fast-firefox.override.js",
+                                                                    "configuration.patches/user.js.custom.js",]),
                                                                 position='top')]
                 }
             }
