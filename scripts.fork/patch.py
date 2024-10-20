@@ -229,7 +229,9 @@ def main():
                                                                 match="/* Extensions support */",
                                                                 position='before')],
                     "theme.patches/fork/center.css": [lambda: patch_manager.patch_cp_file(source_path_or_url="theme.patches/fork/center.css",
-                                                                target_dir="theme/fork")]
+                                                                target_dir="theme/fork")],
+                    "theme.patches/fork/hide-tabs-toolbar.css": [lambda: patch_manager.patch_cp_file(source_path_or_url="theme.patches/fork/hide-tabs-toolbar.css",
+                                                                target_dir="theme/fork")],
                 }
             },
         "configuration.patches": {

@@ -1,3 +1,6 @@
 /**************** Fork ****************/
 /* Center */
 @import "fork/center.css";
+/* Hide #TabsToolbar */
+@import "fork/hide-tabs-toolbar.css";
+/************** End Fork **************/
