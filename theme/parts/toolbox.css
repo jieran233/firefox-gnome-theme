@@ -10,13 +10,16 @@
 /* Toolbox colors */
 #navigator-toolbox {
 	background: var(--gnome-toolbar-background) !important;
-	border-color: var(--gnome-toolbar-border-color) !important;
+	border-bottom: 1px solid var(--gnome-toolbar-border-color) !important;
 }
 
 #PersonalToolbar, #toolbar-menubar, #TabsToolbar, findbar {
 	appearance: none !important;
 	border: 0 !important;
 	background: var(--gnome-toolbar-background) !important;
+	&:-moz-window-inactive {
+		opacity: 1 !important;
+	}
 }
 findbar {
 	border-top: 1px solid var(--gnome-toolbar-border-color) !important;
@@ -27,7 +30,7 @@ findbar {
 #TabsToolbar:-moz-window-inactive, 
 findbar:-moz-window-inactive,
 .container.infobar:-moz-window-inactive {
-	transition: background .2s ease-out;
+	transition: background var(--gnome-animation-time) ease-out;
 }
 
 #navigator-toolbox:-moz-window-inactive label,
@@ -37,15 +40,11 @@ findbar:-moz-window-inactive label,
 findbar:-moz-window-inactive description,
 #viewButton:-moz-window-inactive dropmarker,
 .container.infobar:-moz-window-inactive {
-	opacity: 0.7 !important;
+	opacity: 0.5 !important;
 }
 
 #toolbar-menubar:not([inactive=true]) {
 	margin-bottom: 0 !important;
-}
-#PersonalToolbar {
-	padding: 2px !important;
-	--bookmarks-toolbar-overlapping-browser-height: auto;
 }
 
 /* Overrides: Remove border below the menu bar / above the header bar */
@@ -76,49 +75,55 @@ findbar:-moz-window-inactive description,
 
 /* Content notifications */
 .notificationbox-stack notification-message {
+	background-color: color-mix(in srgb, var(--gnome-accent-bg) 30%, var(--gnome-window-background)) !important;
 	border: 0 !important;
-	font-size: 1em !important;
-	padding: 0 !important;
+	border-top: 1px solid var(--gnome-toolbar-border-color) !important;
 	border-radius: 0 !important;
 	margin: 0 !important;
-}
-.notificationbox-stack notification-message[style*="margin-top"] {
-	margin-top: -48px !important;
-}
-.notification-content {
-	padding-block: 0 !important;
-}
+	
+	&[type="warning"] {
+		background-color: #ffe900 !important;	
+	}
+	&[type="critical"] {
+		background-color: #d70022 !important;
+	}
 
-.container.infobar {
-	background: var(--gnome-toolbar-background) !important;
+	&[style*="margin-top"] {
+		margin-top: -48px !important;
+	}
+	
+	&::before {
+		display: none !important;
+	}
+}
+link[href="chrome://global/content/elements/moz-message-bar.css"] ~ .container {
+	background: none !important;
 	box-shadow: none !important;
 	padding: 6px !important;
 	border-radius: 0 !important;
-}
-.container.infobar::before {
-	display: none !important;
-}
 
-.container.infobar .icon {
-	height: 16px !important;
-	width: 16px !important;
-	margin: 8px 0 !important;
-}
-.notificationbox-stack notification-message[type="warning"] {
-	background: #ffe900 !important;	
-}
-.notificationbox-stack notification-message[type="critical"] {
-	background: #d70022 !important;
-}
+	.icon {
+		color: var(--gnome-window-color)
+		height: 16px !important;
+		width: 16px !important;
+		margin: 8px 0 !important;
+	}
+	
+	.text-container {
+		flex: auto;
+	}
 
-.notificationbox-stack[notificationside="top"] notification-message {
-	border-bottom: 1px solid var(--gnome-toolbar-border-color) !important;
-}
-.notificationbox-stack[notificationside="bottom"] notification-message {
-	border-top: 1px solid var(--gnome-toolbar-border-color) !important;
+	.text-content {
+		font-weight: bold !important;
+	}
 }
 
 /* Bookmarks */
+#PersonalToolbar {
+	padding: 6px !important;
+	padding-top: 0 !important;
+	--bookmarks-toolbar-overlapping-browser-height: auto;
+}
 #PlacesToolbar toolbarseparator {
 	border-top: 0 !important;
 }
@@ -126,9 +131,28 @@ findbar:-moz-window-inactive description,
 	border-image-source: none !important;
 	border-color: var(--gnome-tabbar-tab-separator-color) !important;
 }
+@media (-moz-bool-pref: "gnomeTheme.bookmarksOnFullscreen") { /* OPTIONAL: Show bookmarks bar while in fullscreen  */
+	:root[inFullscreen] #PersonalToolbar{
+		visibility: visible !important;
+	}
+}
+
+#import-button,
+#PlacesToolbar .bookmark-item {
+	border-radius: 6px !important;	
+	color: var(--gnome-window-color) !important;
+	padding: 3px 6px !important;
+
+	&:hover {
+		background-color: var(--gnome-selected-color) !important;
+	}
+	&:active, &[open] {
+		background-color: var(--gnome-selected-active-color) !important;
+	}
+}
 
 /* Text link */
-.text-link {
+.text-link, a {
 	color: var(--gnome-accent) !important;
 }
 

@@ -34,6 +34,7 @@ checkbox:not(.treenode-checkbox) > .checkbox-check[checked] {
 }
 
 /* Radio */
+input[type="radio"],
 radio > .radio-check {
 	appearance: none !important;
 	border: 0 !important;
@@ -42,19 +43,33 @@ radio > .radio-check {
 	height: 20px !important;
 	padding: 3px !important;
 	width: 20px !important;
+	
+	radiogroup:focus-visible radio[focused] > & {
+		outline: 2px solid var(--gnome-focus-border-color) !important;
+		outline-offset: 2px !important;
+	}
 }
+input[type="radio"][aria-checked="false"],
 radio > .radio-check:not([selected]) {
 	background-color: transparent !important;
 	box-shadow: inset 0 0 0 2px var(--gnome-trough-background);
 }
+input[type="radio"][aria-checked="false"]:hover,
 radio > .radio-check:not([selected]):hover {
 	box-shadow: inset 0 0 0 2px var(--gnome-trough-hover-background);
 }
+input[type="radio"][aria-checked="true"],
 radio > .radio-check[selected] {
 	background-color: var(--gnome-accent-bg) !important;
-	list-style-image: url("../icons/bullet-symbolic.svg") !important;
+	background-image: url("../icons/bullet-symbolic.svg") !important;
+	background-repeat: no-repeat;
+	background-position: center;
 	fill: white !important;
 	-moz-context-properties: fill;
+}
+
+.radio-label-box {
+	outline: 0 !important;
 }
 
 .radio-label {

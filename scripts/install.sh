@@ -3,7 +3,6 @@
 THEMEDIRECTORY=$(cd "$(dirname $0)" && cd .. && pwd)
 FIREFOXFOLDER=~/.mozilla/firefox
 PROFILENAME=""
-THEME="DEFAULT"
 
 
 # Get options.
@@ -11,17 +10,33 @@ while getopts 'f:p:t:' flag; do
 	case "${flag}" in
 	f) FIREFOXFOLDER="${OPTARG}" ;;
 	p) PROFILENAME="${OPTARG}" ;;
-	t) THEME="${OPTARG}" ;;
 	*)
 		echo "Gnome Theme Install Script:"
 		echo "  -f <firefox_folder_path>. Set custom Firefox folder path."
 		echo "  -p <profile_name>. Set custom profile name."
-		echo "  -t <theme_name>. Set the colors used in the theme."
 		echo "  -h to show this message."
 		exit 0
 		;;
 	esac
 done
+
+# A wrapper around the `sed` command to handle platform-specific differences.
+#
+# sed in BSD platforms need this extra argument when using '-i' to specify no backup file.
+function _sed(){
+  if [[ "$OSTYPE" == *"linux"* ]]; then
+    sed "$@"
+    return $?
+  fi
+
+  if [[ "$1" == "-i" ]]; then
+    shift 1
+    sed -i '' "$@"
+    return $?
+  fi
+
+  sed "$@"
+}
 
 function saveProfile(){
 	local PROFILE_PATH="$1"
@@ -38,49 +53,51 @@ function saveProfile(){
 	# Create single-line user CSS files if non-existent or empty.
 	if [ -s userChrome.css ]; then
 		# Remove older theme imports
-		sed 's/@import "firefox-gnome-theme.*.//g' userChrome.css | sed '/^\s*$/d' > tmpfile && mv tmpfile userChrome.css
+		_sed 's/@import "firefox-gnome-theme.*.//g' userChrome.css | _sed '/^\s*$/d' > tmpfile && mv tmpfile userChrome.css
 		echo >> userChrome.css
 	else
 		echo >> userChrome.css
 	fi
 
 	# Import this theme at the beginning of the CSS files.
-	sed -i '1s/^/@import "firefox-gnome-theme\/userChrome.css";\n/' userChrome.css
+	_sed -i '1s/^/@import "firefox-gnome-theme\/userChrome.css";\n/' userChrome.css
 
-	if [ "$THEME" = "DEFAULT" ]; then
-		echo "No theme set, using default adwaita." >&2
-	else
-		echo "Setting $THEME theme." >&2
-		echo "@import \"firefox-gnome-theme\/theme/colors/light-$THEME.css\";" >> userChrome.css
-		echo "@import \"firefox-gnome-theme\/theme/colors/dark-$THEME.css\";" >> userChrome.css
+	# Check if the import was set correctly
+	if ! cat userChrome.css | grep "firefox-gnome-theme" > /dev/null; then
+		echo "Unable to add the main import in 'userChrome.css', it needs to be set manually." >&2
 	fi
 
-	# Create single-line user content CSS files if non-existent or empty.
+	# Create single-line user content CSS files if non-existent or empty. (userContent)
 	if [ -s userContent.css ]; then
 		# Remove older theme imports
-		sed 's/@import "firefox-gnome-theme.*.//g' userContent.css | sed '/^\s*$/d' > tmpfile1 && mv tmpfile1 userContent.css
+		_sed 's/@import "firefox-gnome-theme.*.//g' userContent.css | _sed '/^\s*$/d' > tmpfile1 && mv tmpfile1 userContent.css
 		echo >> userContent.css
 	else
 		echo >> userContent.css
 	fi
 
-	# Import this theme at the beginning of the CSS files.
-	sed -i '1s/^/@import "firefox-gnome-theme\/userContent.css";\n/' userContent.css
+	# Import this theme at the beginning of the CSS files. (userContent)
+	_sed -i '1s/^/@import "firefox-gnome-theme\/userContent.css";\n/' userContent.css
 
-	if [ "$THEME" = "DEFAULT" ]; then
-		echo "No theme set, using default adwaita." >&2
-	else
-		echo "Setting $THEME theme."
-		echo "@import \"firefox-gnome-theme\/theme/colors/light-$THEME.css\";" >> userContent.css
-		echo "@import \"firefox-gnome-theme\/theme/colors/dark-$THEME.css\";" >> userContent.css
+	# Check if the import was set correctly (userContent)
+	if ! cat userContent.css | grep "firefox-gnome-theme" > /dev/null; then
+		echo "Unable to add the main import in 'userContent.css', it needs to be set manually." >&2
 	fi
 
 	cd ..
 
 	echo "Set configuration to user.js file" >&2
 
-	mapfile -t theme_prefs < <( grep "user_pref" chrome/firefox-gnome-theme/configuration/user.js )
-	mapfile -t theme_prefs_unvalued < <( grep "user_pref" chrome/firefox-gnome-theme/configuration/user.js|cut -d'"' -f 2 )
+ 	theme_prefs=()
+	while IFS= read -r line; do
+		theme_prefs+=("$line")
+	done < <(grep "user_pref" chrome/firefox-gnome-theme/configuration/user.js)
+  
+	theme_prefs_unvalued=()
+	while IFS= read -r line; do
+		theme_prefs_unvalued+=("$line")
+	done < <(grep "user_pref" chrome/firefox-gnome-theme/configuration/user.js | cut -d'"' -f 2)
+
 	if [ ! -f "user.js" ]; then
 		mv chrome/firefox-gnome-theme/configuration/user.js .
 	else
@@ -88,7 +105,7 @@ function saveProfile(){
 		OLDIFS=$IFS
 		IFS='/'
 		for t in "${theme_prefs_unvalued[@]}"; do
-			sed -i "/$t/d" "user.js"
+			_sed -i "/$t/d" "user.js"
 		done
 		for f in "${theme_prefs[@]}"; do
 			echo "$f" >> "user.js"
@@ -106,7 +123,7 @@ if [ ! -f "${PROFILES_FILE}" ]; then
 fi
 echo "'profiles.ini' found in ${FIREFOXFOLDER}"
 
-PROFILES_PATHS=($(grep -E "^Path=" "${PROFILES_FILE}" | tr -d '\n' | sed -e 's/\s\+/SPACECHARACTER/g' | sed 's/Path=/::/g' ))
+PROFILES_PATHS=($(grep -E "^Path=" "${PROFILES_FILE}" | tr -d '\n' | _sed -e 's/\s\+/SPACECHARACTER/g' | _sed 's/Path=/::/g' ))
 PROFILES_PATHS+=::
 
 PROFILES_ARRAY=()
@@ -123,7 +140,6 @@ else
 fi
 
 
-
 if [ ${#PROFILES_ARRAY[@]} -eq 0 ]; then
 	echo "FAIL, no Firefox profile found in $PROFILES_FILE".;
 
@@ -132,7 +148,7 @@ else
 	do
 		if [[ -n "$i" ]];
 		then
-			echo "Installing ${THEME} theme for $(sed 's/SPACECHARACTER/ /g' <<< $i) profile.";
+			echo "Installing theme for $(sed 's/SPACECHARACTER/ /g' <<< $i) profile.";
 			saveProfile "$(sed 's/SPACECHARACTER/ /g' <<< $i)"
 		fi;
 	done
