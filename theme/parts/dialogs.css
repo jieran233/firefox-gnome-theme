@@ -4,19 +4,20 @@
 
 window {
 	padding: 0 !important;
+	width: initial !important;
 }
 
 dialog {	
-	padding: 24px !important;
+	padding: var(--gnome-dialog-padding) !important;
 }
 
 /* Dialog box */
 .dialogBox {
-	border-radius: 18px !important;
+	border-radius: var(--gnome-dialog-radius) !important;
 	margin-top: 0 !important;
 }
 .dialogBox[resizable="true"] {
-	margin-top: 24px !important;
+	margin-top: var(--gnome-dialog-padding) !important;
 }
 
 .dialogOverlay[topmost="true"]:not(.dialogOverlay-window-modal-dialog-subdialog), #window-modal-dialog::backdrop {
@@ -49,13 +50,38 @@ dialog#handling {
 
 /* Content */
 dialog {
+	&:not(.sizeDetermined) {
+		display: grid !important;
+		justify-content: stretch;
+		min-width: fit-content;
+	}
+
 	#titleContainer {
 		justify-content: center !important;
+	}
+
+	#titleCropper {
+		&[overflown] {
+			mask-image: none !important;
+			
+			#titleText {
+				display: inline-block !important;
+				max-width: 100% !important;
+				overflow: hidden !important;
+				text-overflow: ellipsis;
+			}
+		}
+
+		&:not([nomaskfade]) {
+			display: initial !important;
+		}
 	}
 
 	#titleText {
 		font-size: 20px !important;
 		font-weight: 800 !important;
+		text-align: center !important;
+		white-space: initial !important;
 	}
 
 	.titleIcon {
@@ -73,6 +99,10 @@ dialog {
 	#infoContainer {
 		text-align: center;
 	}
+
+	#checkboxContainer {
+		align-items: center !important;
+	}
 }
 
 /* Buttons */
@@ -83,6 +113,11 @@ dialog {
 	margin-top: auto;
 	padding: 0 !important;
 	
+	/* if dialog has at least 3 buttons */
+	&:has(button:not([hidden])[dlgtype="extra1"]) {
+		min-width: 40rem;
+	}
+	
 	button {
 		min-height: 44px !important;
 		max-height: unset !important;
@@ -91,6 +126,18 @@ dialog {
 		border-radius: 12px !important;
 		flex: 1;
 		border-bottom: 0 !important;
+		
+		.button-box {
+			max-width: 100%;
+			.button-text {
+				max-width: 100%;		
+				&::before {					
+					max-width: 100% !important;
+					overflow: hidden !important;
+					text-overflow: ellipsis;
+				}
+			}
+		}
 	}
 	
 	.button-spacer {
@@ -105,7 +152,7 @@ dialog {
 
 /* Bookmark dialog */
 #editBookmarkPanelContent {
-	padding-bottom: 24px !important;
+	padding-bottom: var(--gnome-dialog-padding) !important;
 }
 
 /* Hadler dialog */
@@ -127,7 +174,7 @@ dialog {
 	padding: 6px 12px !important;
 	
 	&::before {
-		background-image: url("../icons/padlock-symbolic.svg") !important;
+		background-image: var(--gnome-icon-channel-secure-symbolic) !important;
 		height: 16px !important;
 		width: 16px !important;
 	}
@@ -142,11 +189,11 @@ dialog {
 #fullscreen-exit-button {
 	appearance: none !important;
 	background-color: rgba(255, 255, 255, .09) !important;
-	border-radius: 6px !important;
+	border-radius: var(--gnome-button-radius) !important;
 	border: 0 !important;
 	padding: 2px 16px !important;
-	height: 34px !important;
-	min-height: 34px !important;
+	height: var(--gnome-button-size) !important;
+	min-height: var(--gnome-button-size) !important;
 	color: rgba(255, 255, 255, .9) !important;
 	font-weight: bold !important;
 	transition: background var(--gnome-animation-time);

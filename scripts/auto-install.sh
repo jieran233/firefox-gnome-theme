@@ -6,6 +6,7 @@ firefoxInstallationPaths=(
     ~/.var/app/org.mozilla.firefox/.mozilla/firefox # Flatpak
     ~/snap/firefox/common/.mozilla/firefox # Snap
     "$HOME/Library/Application Support/Firefox" # MacOS Package
+    ~/AppData/Roaming/Mozilla/Firefox # Microsoft Windows
 
     # Librewolf
     ~/.librewolf # Package
@@ -14,6 +15,9 @@ firefoxInstallationPaths=(
     # Floorp
     ~/.floorp # Package
     ~/.var/app/one.ablaze.floorp/.floorp # Flatpak
+
+    # Waterfox
+    ~/.var/app/net.waterfox.waterfox/.waterfox # Flatpak
     
 )
 

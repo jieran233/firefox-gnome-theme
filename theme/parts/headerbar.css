@@ -5,12 +5,12 @@
 #nav-bar {
 	background: var(--gnome-headerbar-background) !important;
 	border: 0 !important;
-	padding: 6px 3px !important;
+	padding: var(--gnome-toolbar-padding) calc(var(--gnome-toolbar-padding) / 2) !important;
 }
 
 /* Add private window headerbar indicator */
 :root[privatebrowsingmode="temporary"] #nav-bar toolbarspring:first-of-type:before {
-	background: url("../icons/eye-not-looking-symbolic.svg") no-repeat;
+	background: var(--gnome-icon-eye-not-looking-symbolic) no-repeat;
 	background-size: 64px 64px;
 	content: "";
 	display: block;	
@@ -30,7 +30,7 @@
 }
 
 /* Overlay headerbar on fullscreen */
-@media (-moz-bool-pref: "browser.fullscreen.autohide") {
+@media -moz-pref("browser.fullscreen.autohide") {
 	#navigator-toolbox[inFullscreen] { 	
 		position: fixed !important;
 		transition: margin var(--gnome-animation-time) ease-in-out 0s !important;
