@@ -30,15 +30,6 @@
 /* Platforms */
 @import "platforms/windows.css" screen and (-moz-platform: windows);
 
-
-
-/**************** Fork ****************/
-/* Center */
-@import "fork/center.css";
-/* Hide #TabsToolbar */
-@import "fork/hide-tabs-toolbar.css";
-/************** End Fork **************/
-
 /* Extensions support */
 @import "extensions/tab-center-reborn.css" screen and -moz-pref("gnomeTheme.extensions.tabCenterReborn");
 
