@@ -14,10 +14,12 @@ This is a fork of [rafaelmardojai/firefox-gnome-theme](https://github.com/rafael
 
 ## License
 
-This project is licensed under the **Unlicense license**. However, parts of the project may include code licensed under other licenses, including but not limited to the **MIT license**. See the `third_party_licenses` folder for more details.
+This project is licensed under the **Unlicense license**. However, parts of the project may include code licensed under other licenses, including but not limited to the **MIT license** and **MPL-2.0 license**. See the `third_party_licenses` folder for more details.
 
 ## Acknowledgements
 
 - https://github.com/rafaelmardojai/firefox-gnome-theme
 - https://github.com/yokoffing/Betterfox
 - https://gist.github.com/RubenKelevra/fd66c2f856d703260ecdf0379c4f59db
+- https://github.com/pop-os/libcosmic
+- https://github.com/pop-os/icon-theme
