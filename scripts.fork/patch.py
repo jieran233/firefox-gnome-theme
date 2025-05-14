@@ -238,6 +238,8 @@ def main():
                                                                 target_dir="theme/fork")],
                     "theme.patches/colors/cosmic-dark.css": [lambda: patch_manager.patch_cp_file(source_path_or_url="theme.patches/colors/cosmic-dark.css",
                                                                 target_dir="theme/colors")],
+                    "theme.patches/icons/icons.css": [lambda: patch_manager.patch_cp_file(source_path_or_url="theme.patches/icons/icons.css",
+                                                                target_dir="theme/icons")],
                 }
             },
         "configuration.patches": {
