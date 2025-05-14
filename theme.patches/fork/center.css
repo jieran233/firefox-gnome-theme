@@ -8,7 +8,10 @@
 	top: 7px !important;
 	width: calc(100% - 200px) !important;
 	text-align: center !important;
-	margin-left: 100px !important;
+
+	/****** Hardcoded value for pixel-perfect centering (workaround) ******/
+	/* margin-left: 100px !important; */
+	margin-left: 104px !important;
 }
 
 #urlbar-container {
