@@ -228,10 +228,16 @@ def main():
                                                                 patch_file_or_url_list=["theme.patches/gnome-theme.css.patch.css"],
                                                                 match="/* Extensions support */",
                                                                 position='before')],
+                    "theme/variables.css": [lambda: patch_manager.patch_add_match(origin_file_or_url="theme/variables.css",
+                                                                patch_file_or_url_list=["theme.patches/variables.css.patch.css"],
+                                                                match="\t/* Animations */",
+                                                                position='before')],
                     "theme.patches/fork/center.css": [lambda: patch_manager.patch_cp_file(source_path_or_url="theme.patches/fork/center.css",
                                                                 target_dir="theme/fork")],
                     "theme.patches/fork/hide-tabs-toolbar.css": [lambda: patch_manager.patch_cp_file(source_path_or_url="theme.patches/fork/hide-tabs-toolbar.css",
                                                                 target_dir="theme/fork")],
+                    "theme.patches/colors/cosmic-dark.css": [lambda: patch_manager.patch_cp_file(source_path_or_url="theme.patches/colors/cosmic-dark.css",
+                                                                target_dir="theme/colors")],
                 }
             },
         "configuration.patches": {

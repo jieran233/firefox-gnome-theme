@@ -1,0 +1,154 @@
+@namespace xul url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/* First, define the cosmic-dark palette variables */
+:root {
+    /* Palette Name: cosmic-dark */
+
+    /* Bright Colors */
+    --cosmic-dark-bright-red: rgba(255, 160, 144, 1.0);
+    --cosmic-dark-bright-green: rgba(94, 219, 140, 1.0);
+    --cosmic-dark-bright-orange: rgba(255, 163, 125, 1.0);
+
+    /* Gray Scale & Neutrals */
+    --cosmic-dark-gray-1: rgba(27, 27, 27, 1.0); /* Same as neutral-1 */
+    --cosmic-dark-gray-2: rgba(38, 38, 38, 1.0);
+    --cosmic-dark-neutral-0: rgba(0, 0, 0, 1.0);
+    --cosmic-dark-neutral-1: rgba(27, 27, 27, 1.0);
+    --cosmic-dark-neutral-2: rgba(48, 48, 48, 1.0);
+    --cosmic-dark-neutral-3: rgba(71, 71, 71, 1.0);
+    --cosmic-dark-neutral-4: rgba(94, 94, 94, 1.0);
+    --cosmic-dark-neutral-5: rgba(119, 119, 119, 1.0);
+    --cosmic-dark-neutral-6: rgba(145, 145, 145, 1.0);
+    --cosmic-dark-neutral-7: rgba(171, 171, 171, 1.0);
+    --cosmic-dark-neutral-8: rgba(198, 198, 198, 1.0);
+    --cosmic-dark-neutral-9: rgba(226, 226, 226, 1.0);
+    --cosmic-dark-neutral-10: rgba(255, 255, 255, 1.0);
+
+    /* Accent Colors */
+    --cosmic-dark-accent-blue: rgba(99, 208, 223, 1.0);
+    --cosmic-dark-accent-indigo: rgba(161, 192, 235, 1.0);
+    --cosmic-dark-accent-purple: rgba(231, 156, 254, 1.0);
+    --cosmic-dark-accent-pink: rgba(255, 156, 177, 1.0);
+    --cosmic-dark-accent-red: rgba(253, 161, 160, 1.0);
+    --cosmic-dark-accent-orange: rgba(255, 173, 0, 1.0);
+    --cosmic-dark-accent-yellow: rgba(247, 224, 98, 1.0);
+    --cosmic-dark-accent-green: rgba(146, 207, 156, 1.0);
+    --cosmic-dark-accent-warm-grey: rgba(202, 186, 180, 1.0);
+
+    /* Extended Colors (not all might be used in this mapping) */
+    --cosmic-dark-ext-warm-grey: rgba(155, 142, 138, 1.0);
+    --cosmic-dark-ext-orange: rgba(255, 173, 0, 1.0);
+    --cosmic-dark-ext-yellow: rgba(254, 219, 64, 1.0);
+    --cosmic-dark-ext-blue: rgba(72, 185, 199, 1.0);
+    --cosmic-dark-ext-purple: rgba(207, 125, 255, 1.0);
+    --cosmic-dark-ext-pink: rgba(249, 58, 131, 1.0);
+    --cosmic-dark-ext-indigo: rgba(62, 136, 255, 1.0);
+
+    /* Background Color from cosmic-dark spec */
+    --cosmic-dark-bg-color: rgba(27, 27, 27, 1.0);
+}
+
+
+/* Variables that start with --gnome- are added by me and are assigned
+ * to elements somewhere in this code. The rest of the variables are
+ * built-in in Firefox, so you need to add an !important if you wanna
+ * override them. */
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Colors */
+        /* --gnome-standalone-color-oklab: max(l, 0.85) a b; This is a color function, not a direct color. Kept for reference. */
+        --gnome-destructive-bg: var(--cosmic-dark-accent-red);
+        --gnome-success-bg: var(--cosmic-dark-accent-green);
+        --gnome-warning-bg: var(--cosmic-dark-accent-orange); /* Original: #cd9309 */
+        --gnome-error-bg: var(--cosmic-dark-accent-red);
+
+        --gnome-toolbar-star-button: var(--cosmic-dark-accent-yellow);
+
+        /* Window */
+        --gnome-window-background: var(--cosmic-dark-bg-color); /* Original: #242424, cosmic-dark-bg-color is #1B1B1B */
+        --gnome-window-color: var(--cosmic-dark-neutral-10); /* Original: white */
+        --gnome-view-background: var(--cosmic-dark-neutral-1); /* Original: #1e1e1e, cosmic-dark-neutral-1 is #1B1B1B */
+        --gnome-sidebar-background: var(--cosmic-dark-neutral-2); /* Original: #303030, cosmic-dark-neutral-2 is #303030 */
+        --gnome-secondary-sidebar-background: var(--cosmic-dark-gray-2); /* Original: #2a2a2a, cosmic-dark-gray-2 is #262626 */
+
+        /* Card */
+        /* Original: rgba(255, 255, 255, 0.08). Using cosmic-dark white with alpha. */
+        --gnome-card-background: rgba(from var(--cosmic-dark-neutral-10) r g b / 0.08);
+        /* Original: color-mix(in srgb, black 36%, transparent). Using cosmic-dark black. */
+        --gnome-card-shade-color: color-mix(in srgb, var(--cosmic-dark-neutral-0) 36%, transparent);
+
+        /* Menu */
+        --gnome-menu-background: var(--cosmic-dark-neutral-3); /* Original: #383838, cosmic-dark-neutral-3 is #474747, a bit lighter */
+
+        /* Header bar */
+        --gnome-headerbar-background: var(--cosmic-dark-neutral-2); /* Original: #303030 */
+        /* Original: rgba(0, 0, 0, 0.9). Using cosmic-dark black with alpha. */
+        --gnome-headerbar-shade-color: rgba(from var(--cosmic-dark-neutral-0) r g b / 0.9);
+
+        /* Toolbars */
+        --gnome-toolbar-icon-fill: var(--cosmic-dark-neutral-9); /* Original: #eeeeec, cosmic-dark-neutral-9 is #E2E2E2 */
+
+        /* Tabs - Mapped to cosmic-dark neutrals, originals were hardcoded grays */
+        /* Original Hover: #3f3f3f (rgb 63,63,63) */
+        --gnome-tabbar-tab-hover-background: color-mix(in srgb, var(--cosmic-dark-neutral-2) 50%, var(--cosmic-dark-neutral-3) 50%); /* Approx #3C3C3C */
+        /* Original Active: #444444 (rgb 68,68,68) */
+        --gnome-tabbar-tab-active-background: var(--cosmic-dark-neutral-3); /* #474747 */
+        /* Original Active Contrast: #4F4F4F (rgb 79,79,79) */
+        --gnome-tabbar-tab-active-background-contrast: color-mix(in srgb, var(--cosmic-dark-neutral-3) 60%, var(--cosmic-dark-neutral-4) 40%); /* Approx #525252 */
+        /* Original Active Hover: #4b4b4b (rgb 75,75,75) */
+        --gnome-tabbar-tab-active-hover-background: color-mix(in srgb, var(--cosmic-dark-neutral-3) 70%, var(--cosmic-dark-neutral-4) 30%); /* Approx #4F4F4F */
+
+        --gnome-tabbar-identity-color-green: var(--cosmic-dark-accent-green);
+        --gnome-tabbar-identity-color-yellow: var(--cosmic-dark-accent-yellow);
+        --gnome-tabbar-identity-color-orange: var(--cosmic-dark-accent-orange);
+        --gnome-tabbar-identity-color-red: var(--cosmic-dark-accent-red);
+        --gnome-tabbar-identity-color-purple: var(--cosmic-dark-accent-purple);
+
+        /* Miscellaneous */
+        /* Original: rgba(0,0,0,0.25). Using cosmic-dark black with alpha. */
+        --gnome-shade-color: rgba(from var(--cosmic-dark-neutral-0) r g b / 0.25);
+
+        /* Text color for Firefox Logo in new private tab */
+        --gnome-private-wordmark: var(--cosmic-dark-neutral-10); /* Original: #FBFBFE */
+        /* New private tab background */
+        --gnome-private-in-content-page-background: var(--cosmic-dark-bg-color); /* Original: #242424 */
+        /* Private Browse info box */
+        --gnome-private-text-primary-color: var(--cosmic-dark-neutral-10); /* Original: #FBFBFE */
+
+        /* Backdrop colors */
+        &:-moz-window-inactive {
+            /* Original Hover: #2c2c2c (rgb 44,44,44) */
+            --gnome-tabbar-tab-hover-background: var(--cosmic-dark-neutral-2); /* #303030, darker than original */
+            /* Original Active: #2e2e2e (rgb 46,46,46) */
+            --gnome-tabbar-tab-active-background: var(--cosmic-dark-neutral-2); /* #303030, darker than original */
+            /* Original: #2a2a2a (rgb 42,42,42) */
+            --gnome-sidebar-background: var(--cosmic-dark-gray-2); /* #262626, darker */
+            /* Original: #272727 (rgb 39,39,39) */
+            --gnome-secondary-sidebar-background: var(--cosmic-dark-neutral-1); /* #1B1B1B, darker */
+        }
+
+        /* Private Browse colors */
+        &[privateBrowsemode="temporary"] {
+            /* Headerbar */
+            /* Using cosmic-dark accent purple for private mode accent */
+            --gnome-headerbar-background: var(--cosmic-dark-accent-purple) !important;
+            /* Tabs - Mixing cosmic-dark accent purple with dark neutrals for a subdued purple */
+            /* Original Hover: #6C438C */
+            --gnome-tabbar-tab-hover-background: color-mix(in srgb, var(--cosmic-dark-accent-purple) 35%, var(--cosmic-dark-neutral-1) 65%);
+            /* Original Active: #70498F */
+            --gnome-tabbar-tab-active-background: color-mix(in srgb, var(--cosmic-dark-accent-purple) 40%, var(--cosmic-dark-neutral-1) 60%);
+            /* Original Active Contrast: #86689e */
+            --gnome-tabbar-tab-active-background-contrast: color-mix(in srgb, var(--cosmic-dark-accent-purple) 50%, var(--cosmic-dark-neutral-1) 50%);
+            /* Original Active Hover: #754F93 */
+            --gnome-tabbar-tab-active-hover-background: color-mix(in srgb, var(--cosmic-dark-accent-purple) 45%, var(--cosmic-dark-neutral-1) 55%);
+
+            /* Private and backdrop colors */
+            &:-moz-window-inactive {
+                /* Original Hover: #673C87 */
+                --gnome-tabbar-tab-hover-background: color-mix(in srgb, var(--cosmic-dark-accent-purple) 30%, var(--cosmic-dark-neutral-1) 70%);
+                /* Original Active: #683F89 */
+                --gnome-tabbar-tab-active-background: color-mix(in srgb, var(--cosmic-dark-accent-purple) 33%, var(--cosmic-dark-neutral-1) 67%);
+            }
+        }
+    }
+}
