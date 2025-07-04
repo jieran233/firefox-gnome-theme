@@ -1,7 +1,8 @@
 /*** Override for fast-firefox ***/
 
 /* Revert processCount options*/
-user_pref("dom.ipc.processCount", 8);
+// user_pref("dom.ipc.processCount", 8);
+user_pref("dom.ipc.processCount", 16);  // depends on user's system (nproc, ram)
 user_pref("dom.ipc.processCount.webIsolated", 4);
 
 /* Revert disabling network separations */
