@@ -6,8 +6,8 @@ user_pref("dom.ipc.processCount", 16);  // depends on user's system (nproc, ram)
 user_pref("dom.ipc.processCount.webIsolated", 4);
 
 /* Revert disabling network separations */
-user_pref("fission.autostart", false);
-user_pref("privacy.partition.network_state", false);
+user_pref("fission.autostart", true);
+user_pref("privacy.partition.network_state", true);
 
 // Disabling Efficiency Mode (for Windows 11)
 user_pref("dom.ipc.processPriorityManager.backgroundUsesEcoQoS", false);
