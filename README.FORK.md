@@ -22,5 +22,6 @@ This project is licensed under the **Unlicense license**. However, parts of the 
 - https://github.com/yokoffing/Betterfox
 - https://gist.github.com/RubenKelevra/fd66c2f856d703260ecdf0379c4f59db
 - https://ra1ahq.blog/en/optimizaciya-proizvoditelnosti-mozilla-firefox
+- https://ra1ahq.blog/en/optimizaciya-proizvoditelnosti-mozilla-firefox-chast-2
 - https://github.com/pop-os/libcosmic
 - https://github.com/pop-os/icon-theme
