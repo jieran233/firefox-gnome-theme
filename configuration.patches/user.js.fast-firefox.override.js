@@ -16,6 +16,9 @@ user_pref("dom.ipc.processPriorityManager.backgroundUsesEcoQoS", false);
 user_pref("dom.ipc.forkserver.enable", true);
 
 /*** Disable WebRender due to bug in some hardware ***/
+/* Please note that some features such as WebGPU and WebRender support are still 
+experimental, the specifications are not fully implemented in Firefox yet, and
+may cause stability issues in some hardware configurations under Linux. */
 user_pref("gfx.webrender.all", false);
 user_pref("gfx.webrender.compositor", false);
 user_pref("gfx.webrender.compositor.force-enabled", false);
