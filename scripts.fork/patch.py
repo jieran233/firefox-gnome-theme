@@ -255,6 +255,8 @@ def main():
                                                                     "configuration.patches/user.js.betterfox.override.js",
                                                                     "configuration.patches/user.js.fast-firefox.js",
                                                                     "configuration.patches/user.js.fast-firefox.override.js",
+                                                                    "configuration.patches/user.js.ra1ahq.js",
+                                                                    "configuration.patches/user.js.ra1ahq.override.js"
                                                                     "configuration.patches/user.js.custom.js",]),
                                                                 position='top')]
                 }
