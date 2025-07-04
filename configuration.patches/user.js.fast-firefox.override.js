@@ -11,6 +11,9 @@ user_pref("privacy.partition.network_state", false);
 // Disabling Efficiency Mode (for Windows 11)
 user_pref("dom.ipc.processPriorityManager.backgroundUsesEcoQoS", false);
 
+// Enabling Fork Server (for Linux)
+user_pref("dom.ipc.forkserver.enable", true);
+
 /*** Disable WebRender due to bug in some hardware ***/
 user_pref("gfx.webrender.all", false);
 user_pref("gfx.webrender.compositor", false);
