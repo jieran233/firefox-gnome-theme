@@ -1,8 +1,11 @@
 /*** Override for fast-firefox ***/
+
+/* Revert processCount options*/
 user_pref("dom.ipc.processCount", 8);
 user_pref("dom.ipc.processCount.webIsolated", 4);
 
-user_pref("dom.ipc.processPriorityManager.backgroundUsesEcoQoS", false);  // Disabling Efficiency Mode (for Windows 11)
+// Disabling Efficiency Mode (for Windows 11)
+user_pref("dom.ipc.processPriorityManager.backgroundUsesEcoQoS", false);
 
 /*** Disable WebRender due to bug in some hardware ***/
 user_pref("gfx.webrender.all", false);
