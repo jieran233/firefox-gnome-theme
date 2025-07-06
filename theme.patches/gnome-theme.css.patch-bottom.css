@@ -1,6 +1,9 @@
+/**************** Fork ****************/
+
+/*** Tweaks for sidebar ***/
+
 /* Remove sidebar splitter */
-#sidebar-header,
-& ~ #sidebar-splitter {
+#sidebar-splitter {
   display: none !important;
 }
 
@@ -11,3 +14,5 @@
   min-width: calc(32px + 32px * 7 + 3px * 8) !important;
   width: calc(32px + 32px * 7 + 3px * 8) !important;
 }
+
+/************** End Fork **************/

@@ -224,9 +224,10 @@ def main():
         "theme.patches": {
                 "original_files": ["theme/gnome-theme.css", "theme.patches/fork/center.css"],
                 "patches_lists": {
-                    "theme/gnome-theme.css": [lambda: patch_manager.patch_add(origin_file_or_url="theme/gnome-theme.css",
-                                                                patch_file_or_url_list=["theme.patches/gnome-theme.css.patch.css"],
-                                                                position='bottom')],
+                    "theme/gnome-theme.css": [lambda: patch_manager.patch_add_match(origin_file_or_url="theme/gnome-theme.css",
+                                                                patch_file_or_url_list=["theme.patches/gnome-theme.css.patch-normal.css"],
+                                                                match="/* Extensions support */",
+                                                                position='before')],
                     "theme/variables.css": [lambda: patch_manager.patch_add_match(origin_file_or_url="theme/variables.css",
                                                                 patch_file_or_url_list=["theme.patches/variables.css.patch.css"],
                                                                 match="\t/* Animations */",
@@ -239,14 +240,19 @@ def main():
                                                                 target_dir="theme/fork")],
                     "theme.patches/fork/hide-tabs-toolbar.css": [lambda: patch_manager.patch_cp_file(source_path_or_url="theme.patches/fork/hide-tabs-toolbar.css",
                                                                 target_dir="theme/fork")],
-                    "theme.patches/fork/sidebar-tweaks.css": [lambda: patch_manager.patch_cp_file(source_path_or_url="theme.patches/fork/sidebar-tweaks.css",
-                                                                target_dir="theme/fork")],
                     "theme.patches/colors/cosmic-dark.css": [lambda: patch_manager.patch_cp_file(source_path_or_url="theme.patches/colors/cosmic-dark.css",
                                                                 target_dir="theme/colors")],
                     "theme.patches/icons/icons.css": [lambda: patch_manager.patch_cp_file(source_path_or_url="theme.patches/icons/icons.css",
                                                                 target_dir="theme/icons")],
                 }
             },
+        "theme_part2.patches": {
+            "patches_lists": {
+                    "theme/gnome-theme.css": [lambda: patch_manager.patch_add(origin_file_or_url="theme/gnome-theme.css",
+                                                                patch_file_or_url_list=["theme.patches/gnome-theme.css.patch-bottom.css"],
+                                                                position='bottom')],
+            }
+        },
         "configuration.patches": {
                 "original_files": ["configuration/user.js"],
                 "patches_lists": {
