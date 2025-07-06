@@ -1,8 +1,8 @@
     /**************** Fork ****************/
-    --gnome-button-radius: 2px;
+    --gnome-button-radius: 0px;
 	--gnome-entry-radius: var(--gnome-button-radius);
-	--gnome-card-radius: 2px;
-	--gnome-menu-radius: 2px;
-	--gnome-popover-radius: 2px;
-	--gnome-dialog-radius: 2px; /* Alert dialog */
+	--gnome-card-radius: 0px;
+	--gnome-menu-radius: 0px;
+	--gnome-popover-radius: 0px;
+	--gnome-dialog-radius: 0px; /* Alert dialog */
     /************** End Fork **************/
