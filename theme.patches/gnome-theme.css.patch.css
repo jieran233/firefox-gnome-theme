@@ -3,4 +3,6 @@
 @import "fork/center.css";
 /* Hide #TabsToolbar */
 @import "fork/hide-tabs-toolbar.css";
+/* Tweaks for sidebar */
+@import "fork/sidebar-tweaks.css"
 /************** End Fork **************/

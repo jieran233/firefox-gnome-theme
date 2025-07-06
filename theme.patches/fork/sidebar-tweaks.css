@@ -1,0 +1,13 @@
+/* Remove sidebar splitter */
+#sidebar-header,
+& ~ #sidebar-splitter {
+  display: none !important;
+}
+
+/* Force override width of sidebar  */
+/* Comment out max-width and min-width line if you don't want to make width immutable*/
+#sidebar-box {
+  max-width: calc(32px + 32px * 7 + 3px * 8) !important;
+  min-width: calc(32px + 32px * 7 + 3px * 8) !important;
+  width: calc(32px + 32px * 7 + 3px * 8) !important;
+}
