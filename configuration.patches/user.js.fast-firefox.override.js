@@ -25,10 +25,10 @@ user_pref("browser.tabs.unloadOnLowMemory", true);
 /* Please note that some features such as WebGPU and WebRender support are still 
 experimental, the specifications are not fully implemented in Firefox yet, and
 may cause stability issues in some hardware configurations under Linux. */
-user_pref("gfx.webrender.all", false);
-user_pref("gfx.webrender.compositor", false);
-user_pref("gfx.webrender.compositor.force-enabled", false);
-user_pref("gfx.webrender.enabled", false);
-user_pref("gfx.webrender.precache-shaders", false);
-user_pref("gfx.webrender.program-binary-disk", false);
-user_pref("gfx.webrender.software.opengl", false);
+// user_pref("gfx.webrender.all", false);
+// user_pref("gfx.webrender.compositor", false);
+// user_pref("gfx.webrender.compositor.force-enabled", false);
+// user_pref("gfx.webrender.enabled", false);
+// user_pref("gfx.webrender.precache-shaders", false);
+// user_pref("gfx.webrender.program-binary-disk", false);
+// user_pref("gfx.webrender.software.opengl", false);
