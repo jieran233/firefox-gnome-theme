@@ -18,9 +18,6 @@ user_pref("dom.ipc.forkserver.enable", true);
 // Revert disabling hardware acceleration
 user_pref("layers.acceleration.force-enabled", true);
 
-// Enabling unload tabs on low memory
-user_pref("browser.tabs.unloadOnLowMemory", true);
-
 /*** Disable WebRender due to bug in some hardware ***/
 /* Please note that some features such as WebGPU and WebRender support are still 
 experimental, the specifications are not fully implemented in Firefox yet, and
