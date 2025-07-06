@@ -224,10 +224,9 @@ def main():
         "theme.patches": {
                 "original_files": ["theme/gnome-theme.css", "theme.patches/fork/center.css"],
                 "patches_lists": {
-                    "theme/gnome-theme.css": [lambda: patch_manager.patch_add_match(origin_file_or_url="theme/gnome-theme.css",
+                    "theme/gnome-theme.css": [lambda: patch_manager.patch_add(origin_file_or_url="theme/gnome-theme.css",
                                                                 patch_file_or_url_list=["theme.patches/gnome-theme.css.patch.css"],
-                                                                match="/* Extensions support */",
-                                                                position='before')],
+                                                                position='bottom')],
                     "theme/variables.css": [lambda: patch_manager.patch_add_match(origin_file_or_url="theme/variables.css",
                                                                 patch_file_or_url_list=["theme.patches/variables.css.patch.css"],
                                                                 match="\t/* Animations */",
