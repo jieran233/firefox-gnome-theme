@@ -10,4 +10,7 @@ user_perf("browser.tabs.insertAfterCurrent", true);
 user_perf("browser.sessionstore.restore_on_demand", true);
 user_pref("browser.sessionstore.restore_pinned_tabs_on_demand", true);
 
+// Disable translator popup
+user_pref("browser.translations.automaticallyPopup", false);
+
 /********** End custom user.js ***********/
