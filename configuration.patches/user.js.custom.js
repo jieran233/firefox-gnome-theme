@@ -8,7 +8,7 @@ user_perf("browser.tabs.insertAfterCurrent", true);
 
 // Restore pinned tabs on demand
 user_perf("browser.sessionstore.restore_on_demand", true);
-user_pref("browser.sessionstore.restore_pinned_tabs_on_demand", true);
+//user_pref("browser.sessionstore.restore_pinned_tabs_on_demand", true);
 
 // Disable translator popup
 user_pref("browser.translations.automaticallyPopup", false);
