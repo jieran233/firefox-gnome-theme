@@ -1,0 +1,19 @@
+/* Center text in the URL bar input */
+.urlbar-input-box {
+	position: unset !important;
+}
+#urlbar-input {
+	position: absolute !important;
+	left: 0 !important;
+	top: 6.5px !important;
+	width: calc(100% - 200px) !important;
+	text-align: center !important;
+	margin-left: 100px !important;
+}
+
+
+/* Center items in the bookmark toolbar */
+#PlacesToolbarItems {
+    align-items: center !important;
+    justify-content: center !important;
+}
